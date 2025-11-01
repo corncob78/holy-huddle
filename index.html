@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holy Huddle</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4CAF50">
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <h1>Welcome to Holy Huddle</h1>
+  <p>Create timed Bible reading sessions. Works offline after first load.</p>
+
+  <a href="create-session.html" class="big-btn">Create a Holy Huddle</a>
+
+  <div id="my-huddles">
+    <button id="load-huddles">My Recent Plays</button>
+    <div id="huddles-list"></div>
+  </div>
+
+  <p class="version">v2.2 – Fixed paths & completed plays</p>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+
+    document.getElementById('load-huddles').addEventListener('click', () => {
+      const list = document.getElementById('huddles-list');
+      const plays = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k.startsWith('play-') && localStorage.getItem(k + '-completed')) {
+          plays.push(decodeURIComponent(k.replace('play-', '').split('-')[0]));
+        }
+      }
+      list.innerHTML = plays.length
+        ? plays.map(p => `<p>${p} completed</p>`).join('')
+        : '<p>No plays yet!</p>';
+    });
+  </script>
+</body>
+</html>

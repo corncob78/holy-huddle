@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Holy Huddle Session</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
+</head>
+<body class="session-page theme-default">
+
+  <!-- LEFT SIDEBAR -->
+  <nav id="nav-sidebar">
+    <h3>Jump to...</h3>
+    <div id="book-nav"></div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div id="main-content">
+    <!-- FIXED HEADER -->
+    <header id="fixed-header">
+      <div id="session-header">
+        <h1 id="huddle-title">Holy Huddle</h1>
+        <p id="huddle-host">Host: <span></span></p>
+        <p id="huddle-datetime"></p>
+      </div>
+
+      <div id="timer-controls">
+        <button id="timer-btn">Start Huddle</button>
+        <p id="timer-display">00:00</p>
+      </div>
+
+<!-- Replace the entire <div id="mode-controls"> block -->
+<div id="mode-controls">
+  <button id="mode-toggle">Verse Mode</button>
+</div>
+
+      <div class="theme-selector">
+        <label><input type="radio" name="theme" value="default" checked> Default</label>
+        <label><input type="radio" name="theme" value="dark"> Dark</label>
+        <label><input type="radio" name="theme" value="sepia"> Sepia</label>
+        <label><input type="radio" name="theme" value="high-contrast"> High Contrast</label>
+        <label><input type="radio" name="theme" value="minimal"> Minimal</label>
+      </div>
+
+      <div id="gameplan" class="rich-desc"></div>
+    </header>
+
+    <!-- SCROLLING TEXT -->
+    <main id="scrolling-verses">
+      <div id="verses-container"></div>
+    </main>
+  </div>
+
+  <div id="toast"></div>
+
+  <script src="js/session.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    }
+  </script>
+</body>
+</html>

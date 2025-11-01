@@ -1,0 +1,204 @@
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family: Georgia, serif; background:#f9f9f9; color:#333; padding:15px; font-size:15px; line-height:1.5; }
+h1 { text-align:center; margin:10px 0; font-size:1.5em; }
+.big-btn { display:block; margin:20px auto; padding:12px 24px; background:#4CAF50; color:white; text-decoration:none; border-radius:5px; text-align:center; }
+button, input, textarea { padding:6px; margin:5px 0; font-size:14px; border:1px solid #ddd; border-radius:3px; }
+button { background:#4CAF50; color:white; cursor:pointer; }
+button:disabled { background:#ccc; cursor:not-allowed; }
+#toast { position:fixed; top:10px; right:10px; background:#4CAF50; color:white; padding:10px; border-radius:3px; display:none; z-index:1000; }
+
+/* PAPER FORM STYLES */
+#huddle-form {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 30px 40px;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  font-family: 'Georgia', serif;
+  position: relative;
+}
+#huddle-form h1 { text-align:center; margin:0 0 25px; font-size:1.6em; color:#333; border-bottom:2px solid #4CAF50; padding-bottom:10px; }
+.loading { text-align:center; font-style:italic; color:#666; margin:20px 0; }
+
+/* VIEW TOGGLE */
+.view-toggle button { background:#f0f0f0; border:1px solid #ccc; color:#333; font-weight:bold; cursor:pointer; }
+.view-toggle button.active { background:#4CAF50; color:white; border-color:#4CAF50; }
+body.full-view .book-grid { column-count:3 !important; }
+
+/* FORCE 3-COLUMN BOOKS */
+.book-grid { column-count:3 !important; column-gap:20px; margin:15px 0; }
+.book-grid label { display:block; margin:6px 0; font-size:15px; break-inside:avoid; cursor:pointer; }
+.book-grid input[type="checkbox"] { margin-right:8px; transform:scale(1.1); }
+
+.button-row { text-align:center; margin:15px 0; }
+.button-row button { margin:0 8px; padding:8px 16px; font-size:14px; }
+.divider { border:none; border-top:1px dashed #aaa; margin:25px 0; }
+.form-row { display:flex; align-items:center; margin:14px 0; flex-wrap:wrap; gap:10px; }
+.form-row label { font-weight:bold; min-width:120px; color:#444; }
+.form-row input[type="number"], .form-row input[type="datetime-local"], .form-row input[type="text"] { width:120px; padding:6px; }
+.form-row span { color:#666; font-size:14px; }
+.form-row.full-width { flex-direction:column; align-items:stretch; }
+.form-row.full-width label { margin-bottom:6px; }
+.editor { border:1px solid #ddd; border-radius:4px; min-height:100px; }
+.submit-row { text-align:center; margin:30px 0 20px; }
+.submit-row button { padding:12px 32px; font-size:16px; font-weight:bold; background:#4CAF50; color:white; }
+.link-output { text-align:center; margin-top:20px; font-family:monospace; word-break:break-all; }
+.link-output a { color:#4CAF50; font-weight:bold; }
+.formatted-date { color:#666; font-style:italic; margin-top:5px; font-size:14px; }
+h3 { margin-top:20px; font-size:1.2em; color:#4CAF50; border-bottom:1px solid #eee; padding-bottom:5px; }
+
+/* Mobile */
+@media (max-width:600px) {
+  body:not(.full-view) .book-grid { column-count:1 !important; }
+  #huddle-form { padding:20px; margin:15px; }
+  .form-row label { min-width:100%; }
+}
+#gathering-date, #gathering-time { width:140px; padding:6px; }
+#formatted-datetime { color:#666; font-style:italic; margin-left:10px; font-size:14px; }
+#huddle-name:invalid { border-color:#f44336; }
+
+/* Session page */
+#mode-toggle { padding:8px 16px; background:#2196F3; color:white; border:none; border-radius:6px; cursor:pointer; font-size:14px; }
+.theme-selector { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; margin:10px 0; font-size:13px; }
+.theme-selector label { margin:0; }
+
+/* SCROLLING TEXT BOX */
+#scrolling-verses { height:calc(100vh - 280px); overflow-y:auto; padding:20px; background:#fafafa; }
+#verses-container { max-width:900px; margin:0 auto; }
+
+/* PARAGRAPH MODE */
+.paragraph-mode .chapter { margin-bottom:20px; position:relative; break-inside:avoid; }
+.paragraph-mode .chapter-number { position:absolute; left:0; top:0; font-size:4em; font-weight:bold; color:#4CAF50; line-height:0.8; font-family:'Times New Roman',serif; }
+.paragraph-mode p { margin-left:50px; text-align:justify; line-height:1.7; font-size:1.05em; }
+.paragraph-mode p:first-of-type { text-indent:0; }
+.paragraph-mode p:not(:first-of-type) { text-indent:1.5em; margin-top:0; }
+.paragraph-mode .verse-sup { font-size:0.55em; vertical-align:super; color:#666; margin-right:2px; }
+@media (min-width:768px) {
+  .paragraph-mode .chapter { column-count:2; column-gap:20px; column-rule:1px solid #eee; padding:0 10px; }
+}
+
+/* VERSE MODE */
+.verse-line { margin:10px 0; line-height:1.8; font-size:16px; padding-left:5px; }
+.verse-line .verse-number { color:#4CAF50; font-weight:bold; margin-right:6px; font-size:1.1em; }
+
+/* THEMES */
+body.theme-dark #fixed-header { background:#121212; border-color:#333; }
+body.theme-dark #timer-display { color:#4CAF50; }
+body.theme-dark #mode-toggle { background:#333; }
+body.theme-dark #scrolling-verses { background:#1e1e1e; }
+
+body.theme-sepia #fixed-header { background:#f4ecd8; border-color:#d7ccc8; }
+body.theme-sepia #timer-display { color:#388e3c; }
+body.theme-sepia #scrolling-verses { background:#efebe9; }
+
+body.theme-high-contrast #fixed-header { background:#fff; border-color:#000; }
+body.theme-high-contrast #timer-display { color:#000; }
+body.theme-high-contrast #scrolling-verses { background:#f0f0f0; }
+
+body.theme-minimal #fixed-header { padding:5px; }
+body.theme-minimal #scrolling-verses { padding:5px; height:calc(100vh - 100px); }
+
+/* LAYOUT */
+#main-content { margin-left:250px; min-height:100vh; }
+#fixed-header { position:sticky; top:0; background:#fff; z-index:100; padding:15px; border-bottom:2px solid #4CAF50; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+#scrolling-verses { height:calc(100vh - 280px); overflow-y:auto; padding:20px; background:#fafafa; }
+#verses-container { max-width:900px; margin:0 auto; }
+
+/* SIDEBAR */
+#nav-sidebar { position:fixed; left:0; top:0; width:250px; height:100vh; background:#f0f0f0; border-right:1px solid #ddd; padding:15px; overflow-y:auto; z-index:90; font-size:14px; }
+#nav-sidebar h3 { margin:0 0 10px; font-size:1.1em; color:#4CAF50; text-align:center; }
+.book-item { margin-bottom:8px; }
+.book-title { font-weight:bold; cursor:pointer; color:#333; padding:4px 8px; border-radius:4px; transition:background .2s; }
+.book-title:hover { background:#e0e0e0; }
+.book-title.active { background:#4CAF50; color:white; }
+.chapter-list { margin-left:15px; display:none; }
+.chapter-list.show { display:block; }
+.chapter-item { padding:2px 8px; cursor:pointer; color:#555; }
+.chapter-item:hover { background:#ddd; }
+.chapter-item.active { font-weight:bold; color:#4CAF50; }
+
+/* Mobile stack */
+@media (max-width:768px) {
+  #nav-sidebar { position:static; width:100%; height:auto; border-right:none; border-bottom:1px solid #ddd; }
+  #main-content { margin-left:0; }
+}/* === WIDE MODE (Horizontal Scroll) === */
+.wide-mode #scrolling-verses {
+  height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+  background: #fafafa;
+}
+
+.wide-mode #verses-container {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  padding: 0 20px;
+  max-width: none;
+}
+
+.wide-mode .chapter {
+  min-width: 80vw;
+  max-width: 900px;
+  scroll-snap-align: start;
+  break-inside: avoid;
+  position: relative;
+}
+
+.wide-mode .chapter-number {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 4em;
+  font-weight: bold;
+  color: #4CAF50;
+  line-height: 0.8;
+  font-family: 'Times New Roman', serif;
+}
+
+.wide-mode p {
+  margin-left: 50px;
+  text-align: justify;
+  line-height: 1.7;
+  font-size: 1.05em;
+}
+
+.wide-mode p:first-of-type { text-indent: 0; }
+.wide-mode p:not(:first-of-type) { text-indent: 1.5em; margin-top: 0; }
+
+.wide-mode .verse-sup {
+  font-size: 0.55em;
+  vertical-align: super;
+  color: #666;
+  margin-right: 2px;
+}
+
+/* Hide scrollbar but keep functionality */
+.wide-mode #scrolling-verses::-webkit-scrollbar {
+  display: none;
+}
+.wide-mode #scrolling-verses {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Mobile: disable wide mode */
+@media (max-width: 768px) {
+  .wide-mode #scrolling-verses {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: none;
+  }
+  .wide-mode #verses-container {
+    flex-direction: column;
+  }
+  .wide-mode .chapter {
+    min-width: auto;
+    scroll-snap-align: none;
+  }
+}
